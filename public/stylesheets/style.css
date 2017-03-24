@@ -1,0 +1,21 @@
+body {
+  padding: 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.fltrt { float: right; }
+.fltrtPadding { float: right; padding-right: 10px; }
+.fltlft { float: left; }
+.clearfloat { clear:both; height:0; font-size: 1px; line-height: 0px; }
+.clear { clear:both; }
+
+.imgCol {width:100px;}
+.nameCol {width:200px;}
+.quanityCol {width:50px;}
+.header {font-weight:bold;border-bottom:1px solid black;}
+.scanThumb {max-width: 200px; max-height: 180px;}
+.child {width:100%;}

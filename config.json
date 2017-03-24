@@ -1,0 +1,23 @@
+{
+	"mode": "production",
+	"logger": {
+		"transports": {
+			"console": {
+				"level": "debug",
+				"colorize": true,
+				"timeStamp": true
+			},
+			"file": {
+				"level": "debug",
+				"fileName": "logs/app.log",
+				"timeStamp": true
+			}
+		}
+	},
+	"mqtt": {
+		"host": "mqtt://192.168.1.5:1883",
+		"user": "",
+		"password": "",
+		"topicName": "smartFridge/"
+	}
+}

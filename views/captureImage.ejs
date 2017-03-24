@@ -1,0 +1,426 @@
+<% include head %>
+<body>
+  <div id="page-wrapper" ng-app="mainApp" ng-controller="formController" class="container">
+    <div id="header-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="12u">
+
+            <header id="header">
+              <h1><a href="#" id="logo">Fridge Scanner</a></h1>
+              <nav id="nav">
+                <a href="index.html" class="current-page-item">Scanner</a>
+                <a href="twocolumn1.html">Inventory Control</a>
+              </nav>
+            </header>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="banner-wrapper">
+      <div class="container">
+
+
+        <div class="row main-row">
+          <div class="6u 12u(mobile)">
+            <video id="video" autoplay="" style="border:1px solid black;margin:2px;width:600px;height:450px;"></video>
+            <div class="fltlft" style="width:600px; padding-left:5px;">
+              <button id="snap"class="button">Capture</button>
+              <button id="upload" class="button" ng-click="uploadImage()">Classify/Tag</button>
+              <!--<button id="test" onClick="testRes()">test</button>-->
+            </div>
+          </div>
+          <div class="6u 12u(mobile)">
+            <canvas id="canvas" width="600" height="450" style="border:1px solid black;margin:2px;width:600px;height:450.5px"></canvas>
+            <div class="fltlft" style="width:640px;padding-left:5px;">
+              <h3>Tags this item is identified with:</h3>
+              <div id="imgTags"></div>
+              <hr>
+              <div class="fltlft">
+                <button id="save" class="button" ng-click="saveScan()">Save</button>
+              </div>
+              <div class="fltlft" style="padding:10px;">
+                Suggestion:<br/>
+                <select id="suggestedItem" name="suggestedSelect">
+                  <option id="0">No Match</option>
+                  <% if(master.length>0){
+                     for(var i = 0;i < master.length;i++) { %>
+                        <option value="<%=master[i].id%>"><%=master[i].name%></option>
+                  <% }
+                       }else{ %>
+                           <option id="0">None</option>
+                  <% } %>
+                </select>
+              </div>
+              <div class="fltlft" style="padding:10px;">
+                Or New Item:<br/>
+               <input type="text" id="newNameBox" name="newName">
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+    <div id="main">
+      <div class="container">
+        <div class="row main-row">
+          <div class="12u">
+              <h2>Last 5 Scans</h2>
+            <% if(master.length>0){
+               for(var i = 0;i < master.length;i++) { %>
+                  <%=master[i].name%> &nbsp;
+            <% }
+                 }else{ %>
+                     <div>No masterData</div>
+                <% } %>
+
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div id="footer-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="8u 12u(mobile)">
+
+            <section>
+              <h2>All about AI and Scanning?</h2>
+              <div>
+                <div class="row">
+                  <div class="3u 12u(mobile)">
+                    <ul class="link-list">
+                      <li><a href="#">Sed neque nisi consequat</a></li>
+                      <li><a href="#">Dapibus sed mattis blandit</a></li>
+                      <li><a href="#">Quis accumsan lorem</a></li>
+                      <li><a href="#">Suspendisse varius ipsum</a></li>
+                      <li><a href="#">Eget et amet consequat</a></li>
+                    </ul>
+                  </div>
+                  <div class="3u 12u(mobile)">
+                    <ul class="link-list">
+                      <li><a href="#">Quis accumsan lorem</a></li>
+                      <li><a href="#">Sed neque nisi consequat</a></li>
+                      <li><a href="#">Eget et amet consequat</a></li>
+                      <li><a href="#">Dapibus sed mattis blandit</a></li>
+                      <li><a href="#">Vitae magna sed dolore</a></li>
+                    </ul>
+                  </div>
+                  <div class="3u 12u(mobile)">
+                    <ul class="link-list">
+                      <li><a href="#">Sed neque nisi consequat</a></li>
+                      <li><a href="#">Dapibus sed mattis blandit</a></li>
+                      <li><a href="#">Quis accumsan lorem</a></li>
+                      <li><a href="#">Suspendisse varius ipsum</a></li>
+                      <li><a href="#">Eget et amet consequat</a></li>
+                    </ul>
+                  </div>
+                  <div class="3u 12u(mobile)">
+                    <ul class="link-list">
+                      <li><a href="#">Quis accumsan lorem</a></li>
+                      <li><a href="#">Sed neque nisi consequat</a></li>
+                      <li><a href="#">Eget et amet consequat</a></li>
+                      <li><a href="#">Dapibus sed mattis blandit</a></li>
+                      <li><a href="#">Vitae magna sed dolore</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+          <div class="4u 12u(mobile)">
+
+            <section>
+              <h2>Something of interest</h2>
+              <p>Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed.
+              Suspendisse eu varius nibh. Suspendisse vitae magna eget odio amet
+              mollis justo facilisis quis. Sed sagittis mauris amet tellus gravida
+              lorem ipsum dolor sit amet consequat blandit.</p>
+              <footer class="controls">
+                <a href="#" class="button">Oh, please continue ....</a>
+              </footer>
+            </section>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="12u">
+
+            <div id="copyright">
+              &copy; BLT Robotics - All rights reserved.
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">// Put event listeners into place
+     window.addEventListener("DOMContentLoaded", function() {
+     // Grab elements, create settings, etc.
+     var canvas = document.getElementById("canvas"),
+     context = canvas.getContext("2d"),
+     video = document.getElementById("video"),
+     videoObj = { "video": true },
+     errBack = function(error) {
+     console.log("Video capture error: ", error.code);
+     };
+     // Put video listeners into place
+     if(navigator.getUserMedia) { // Standard
+     navigator.getUserMedia(videoObj, function(stream) {
+     video.src = stream;
+     video.play();
+     }, errBack);
+     } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+     navigator.webkitGetUserMedia(videoObj, function(stream){
+     video.src = window.URL.createObjectURL(stream);
+     video.play();
+     }, errBack);
+     } else if(navigator.mozGetUserMedia) { // WebKit-prefixed
+     navigator.mozGetUserMedia(videoObj, function(stream){
+     video.src = window.URL.createObjectURL(stream);
+     video.play();
+     }, errBack);
+     }
+     // Trigger photo take
+     document.getElementById("snap").addEventListener("click", function() {
+       document.getElementById('newNameBox').value='';
+       document.getElementById('suggestedItem').selectedIndex=0;
+       document.getElementById('imgTags').innerHTML='';
+
+
+     context.drawImage(video, 0, 0, 600, 450);
+     // Littel effects
+     //$('#video').fadeOut('slow');
+     $('#canvas').fadeIn('slow');
+     //$('#snap').hide();
+     //$('#new').show();
+     // Allso show upload button
+     //$('#upload').show();
+     });
+
+     // Upload image to sever
+     document.getElementById("upload").addEventListener("click", function(){
+     var dataUrl = canvas.toDataURL();
+      //console.log(dataUrl);
+
+     });
+     }, false);
+  var mainApp = angular.module("mainApp", []);
+  mainApp.controller("formController", function($scope, $http) {
+      $scope.uploadImage = function () {
+        var request = $http({
+           method: "post",
+           url:  "/captureImage",
+           data: {
+              base64: document.getElementById("canvas").toDataURL()
+           },
+           headers: { 'Content-Type': 'application/json' }
+         });
+       request.success(function (data) {
+         processResult(data);
+       });
+       request.error(function(serverResponse, status, headers, config) {
+          alert("failure");
+       });
+     };
+
+     $scope.saveScan = function () {
+
+
+       var newItem = document.getElementById('newNameBox');
+       var suggested = document.getElementById('suggestedItem');
+
+       if (suggested.selectedIndex==0){ //Add a new item
+         var request = $http({
+            method: "post",
+            url:  "/saveScan",
+            data: {
+               base64: document.getElementById("canvas").toDataURL(),
+               aiData:lastScan,
+               newItemName:newItem.value
+            },
+            headers: { 'Content-Type': 'application/json' }
+          });
+        request.success(function (data) {
+          //processResult(data);
+          //alert(data);
+        });
+        request.error(function(serverResponse, status, headers, config) {
+           alert("failure");
+        });
+       }
+       else { //Update Quanity
+           var request = $http({
+              method: "put",
+              url:  "/saveScan",
+              data: {
+                 selectedID: suggested.value
+              },
+              headers: { 'Content-Type': 'application/json' }
+            });
+          request.success(function (data) {
+            //processResult(data);
+            //alert(data);
+          });
+          request.error(function(serverResponse, status, headers, config) {
+             alert("failure");
+          });
+       }
+
+
+
+    };
+
+  });
+
+  var resObj = {"status_code":"OK","status_msg":"All images in request have completed successfully. ","meta":{"tag":{"timestamp":1470625272.003508,"model":"general-v1.3","config":"34fb1111b4d5f67cf1b8665ebc603704"}},"results":[{"docid":2.694263362192461e+38,"status_code":"OK","status_msg":"OK","local_id":"","result":{"tag":{"concept_ids":["ai_8M9zd63P","ai_786Zr311","ai_LBJP4WfX","ai_ll97lFvS","ai_rRDgzFQs","ai_5Kp5FMJw","ai_6lhccv44","ai_9bHlLt8r","ai_p9bzR7fH","ai_GzNlpxwb","ai_ZssXw3dj","ai_p3STCvpt","ai_Lq00FggW","ai_SVshtN54","ai_xtgFN8Q0","ai_4lvjn8qv","ai_vgTKQTdr","ai_P2ktCFHk","ai_vDwcgZd8","ai_pvxl1BTq"],"classes":["composition","no person","pencil","office","school","still life","business","paper","education","equipment","instrument","writing","desktop","one","medicine","closeup","tableware","plastic","tool","tool"],"probs":[0.9914346933364868,0.989464521408081,0.9778847694396973,0.9625737071037292,0.9577564597129822,0.9508771896362305,0.9459898471832275,0.9459344148635864,0.9434347748756409,0.9403756856918335,0.9335394501686096,0.9143201112747192,0.9098063707351685,0.8914058804512024,0.8881992697715759,0.8647094368934631,0.8563066124916077,0.8526437282562256,0.8289463520050049,0.8252434730529785]}},"docid_str":"cab19ff7af49f99c5640305c574e2fcd"}]};
+  var lastScan;
+
+  function testRes()
+  {
+    processResult(resObj);
+  }
+
+  function processResult(responseObj){
+    lastScan = responseObj;
+    var tagsBox = document.getElementById('imgTags');
+
+    var i=0;
+    var strBuffer = '';
+    for (i=0;i<responseObj.results[0].result.tag.classes.length;i++)
+    {
+      strBuffer += '<button style="margin:2px; id="tags_' + i + '" onclick="markMe(this,' + i + ')">' + responseObj.results[0].result.tag.classes[i] + ' - ' + (Math.round(responseObj.results[0].result.tag.probs[i] * 1000)/10) + '%</button>';
+    }
+    tagsBox.innerHTML = strBuffer;
+    getMatch();
+  }
+
+  function markMe(tagID,id){
+    tagID.style.background='#00ff00';
+  }
+
+
+
+  function saveScan(){
+    addChildToScans();
+  }
+
+function getMatch(){
+  $.ajax({
+   url:"/matchGame",
+   type:"get",
+   success:function(res){
+     var matchList = JSON.parse(res);
+     //alert(res);
+
+     var sortable = [];
+     for (var match in matchList)
+           sortable.push([match, matchList[match]])
+     sortable.sort(
+         function(a, b) {
+             return a[1] - b[1]
+         }
+     )
+
+     var itemList = document.getElementById("suggestedItem");
+     //alert(sortable);
+     //alert(sortable.length);
+
+     //alert(sortable[sortable.length-1]);
+     //alert(sortable[sortable.length-1][0]);
+     itemList.value = sortable[sortable.length-1][0];
+
+
+     //alert(sortable);
+
+     //jQuery.each(matchList, function(i, val) {
+       //$("#" + i).append(document.createTextNode(" - " + val));
+       //alert(val);
+     //});
+
+     return false;
+   },
+   error:function(xhr, status, error){
+       console.log(xhr.responseText);
+       var err = '';
+       $.each(JSON.parse(xhr.responseText) , function(i, item) {
+            err +='<li>'+item.msg+'</li>';
+       });
+       $(".err-area").html(err);
+       return false;
+   }
+  });
+
+}
+
+
+  function addChildToScans(){
+
+/*
+    <div class="child">
+      <div class="fltlft imgCol" ><img src="/" class="scanThumb"></div>
+      <div class="fltlft nameCol" >Bananna</div>
+      <div class="fltlft quanityCol" >5</div>
+      <div class="clear"><div>
+    </div>
+  */
+
+    var lastScan = document.getElementById("canvas");
+
+    var childItem = document.createElement("DIV");
+    childItem.classList.add("child");
+    var imgItem = document.createElement("DIV");
+    imgItem.classList.add("fltlft");
+    imgItem.classList.add("imgCol");
+    var imgNode = document.createElement("CANVAS");
+    imgNode.classList.add("scanThumb");
+
+
+    //imgNode.drawImage(lastScan, 0, 0, 90, 50);
+    //imgNode.src="https://www.organicfacts.net/wp-content/uploads/2013/05/Banana3.jpg";
+
+    imgItem.appendChild(imgNode);
+    var nameItem = document.createElement("DIV");
+    nameItem.classList.add("fltlft");
+    nameItem.classList.add("nameCol");
+    var namenode = document.createTextNode("Bannana");
+    nameItem.appendChild(namenode);
+    var quanityItem = document.createElement("DIV");
+    quanityItem.classList.add("fltlft");
+    quanityItem.classList.add("quanityCol");
+    var quanitynode = document.createTextNode("1");
+    quanityItem.appendChild(quanitynode);
+
+    var clearItem = document.createElement("DIV");
+    clearItem.classList.add("clear");
+
+
+    childItem.appendChild(imgItem);
+    childItem.appendChild(nameItem);
+    childItem.appendChild(quanityItem);
+    childItem.appendChild(clearItem);
+
+    var lastScansList = document.getElementById("lastScans");    // Get the <ul> element to insert a new node
+    lastScansList.insertBefore(childItem, lastScansList.childNodes[0]);
+    contextThumb = imgNode.getContext("2d");
+    contextThumb.drawImage(lastScan, 0, 0, 200, 180);
+  }
+
+  </script>
+
+
+<% include scripts %>
+
+</body>
+</html>

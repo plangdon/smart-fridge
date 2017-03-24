@@ -1,0 +1,32 @@
+{
+  "name": "smart-fridge",
+  "version": "1.0.0",
+  "description": "Adding a secure vision and voice UI to a frige inventory tracker.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plangdon/smart-fridge.git"
+  },
+  "author": "Paul Langdon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plangdon/smart-fridge/issues"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "clarifai": "^1.2.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "^2.5.1",
+    "express": "~4.13.4",
+    "express-myconnection": "*",
+    "jade": "~1.11.0",
+    "morgan": "~1.7.0",
+    "mysql": "^2.7.0",
+    "serve-favicon": "~2.3.0"
+  },
+  "homepage": "https://github.com/plangdon/smart-fridge#readme"
+}
